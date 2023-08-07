@@ -10,16 +10,18 @@ import { UsersRepository } from './repositories/users.repository';
 @Injectable()
 export class UsersService {
   constructor(private usersRepository: UsersRepository) {}
+
   async create(createUserDto: CreateUserDto) {
     const findUser = await this.usersRepository.findByEmail(
       createUserDto.email,
     );
 
     if (findUser) {
-      throw new ConflictException('email already exists');
+      throw new ConflictException('Email already exists');
     }
 
     const user = await this.usersRepository.create(createUserDto);
+
     return user;
   }
 
@@ -33,6 +35,12 @@ export class UsersService {
     if (!findUser) {
       throw new NotFoundException('User Not found!');
     }
+
+    return findUser;
+  }
+
+  async findByEmail(email: string) {
+    const findUser = await this.usersRepository.findByEmail(email);
 
     return findUser;
   }

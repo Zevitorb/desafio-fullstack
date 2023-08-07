@@ -2,9 +2,10 @@ import { randomUUID } from 'crypto';
 
 export class Contact {
   readonly id: string;
+  readonly createdAt: Date;
   name: string;
-  numbers: number[];
-  emails: string[];
+  phone: string;
+  email: string;
   company: string;
   description: string;
   userId: string;
