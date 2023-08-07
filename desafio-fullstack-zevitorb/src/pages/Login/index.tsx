@@ -1,8 +1,10 @@
-import { TextField, Button } from "@mui/material"
+import { TextField } from "@mui/material"
 import { useForm } from "react-hook-form"
 import { LoginData, schema } from "./validator"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useAuth } from "../../hooks/useAuth"
+import { StyledMain } from "./styles"
+import { Link } from "react-router-dom"
 
 export const Login = () => {
   const { register, handleSubmit } = useForm<LoginData>({
@@ -10,8 +12,8 @@ export const Login = () => {
   })
   const { signIn } = useAuth()
   return (
-    <main>
-      <h2>LOGIN</h2>
+    <StyledMain>
+      <h1>Gerenciador de contatos</h1>
 
       <form onSubmit={handleSubmit(signIn)}>
         <TextField
@@ -19,8 +21,6 @@ export const Login = () => {
           label="E-mail"
           type="email"
           variant="outlined"
-          fullWidth
-          sx={{ mb: "10px" }}
           {...register("email")}
         />
         <TextField
@@ -28,13 +28,12 @@ export const Login = () => {
           label="Password"
           type="password"
           autoComplete="current-password"
-          fullWidth
           {...register("password")}
         />
-        <Button type="submit" variant="contained">
-          Entrar
-        </Button>
+        <button type="submit">Entrar</button>
+        <p className="paragraph">Ainda não possui conta?</p>
+        <Link to="/register">Cadastrar-se</Link>
       </form>
-    </main>
+    </StyledMain>
   )
 }

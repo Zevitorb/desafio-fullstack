@@ -8,10 +8,10 @@ export const RoutesMain = () => {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
-      <Route element={<ProtectedRoutes/>}>
+      <Route path="/register" element={<Register />} />
+      <Route element={<ProtectedRoutes />}>
         <Route path="/dashboard" element={<Dashboard />} />
       </Route>
-      <Route path="/register" element={<Register />} />
     </Routes>
   )
 }
