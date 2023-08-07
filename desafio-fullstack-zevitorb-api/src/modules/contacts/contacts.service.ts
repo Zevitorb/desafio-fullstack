@@ -28,8 +28,8 @@ export class ContactsService {
     return contact;
   }
 
-  async findAll() {
-    return await this.contactsRepository.findAll();
+  async findAll(userId: string) {
+    return await this.contactsRepository.findAll(userId);
   }
 
   async findOne(id: string) {
